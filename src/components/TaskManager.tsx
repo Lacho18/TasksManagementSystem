@@ -21,19 +21,21 @@ export default function TaskManager() {
 
     return (
         <div className="task-manager">
-            <div>
-                <p>Tasks list</p>
+            <div style={{ flexBasis: "20%", marginBottom: "10px", marginLeft: "10px" }}>
+                <p style={{ fontSize: "2em", fontWeight: "bold" }}>Tasks list</p>
             </div>
-            <div>
-                <button>Add task</button>
-            </div>
-            <div>
-                <TasksTable currentTasks={currentTasks} />
-            </div>
-            <div>
-                {pagesNumber.current.map(indexValue => {
-                    return <button>{indexValue}</button>
-                })}
+            <div style={{ flexBasis: "80%" }}>
+                <div>
+                    <button className="add-task-button">Add task</button>
+                </div>
+                <div>
+                    <TasksTable currentTasks={currentTasks} />
+                </div>
+                <div className="pages-buttons">
+                    {pagesNumber.current.map(indexValue => {
+                        return <button>{indexValue}</button>
+                    })}
+                </div>
             </div>
         </div>
     );

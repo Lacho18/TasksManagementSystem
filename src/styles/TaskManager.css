@@ -2,4 +2,98 @@
     background-color: rgb(238, 244, 249);
     width: 100%;
     height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    overflow: scroll;
+}
+
+.task-table {
+    display: grid;
+    grid-template-rows: repeat(5, 1fr);
+    padding: 20px;
+    background-color: white;
+    align-self: flex-end;
+    margin: 18px;
+    border-radius: 18px;
+}
+
+.task-table > div {
+    display: flex;
+    margin: 5px;
+    border: 1px solid rgb(196, 195, 195);
+}
+
+.rows {
+    padding-left: 7px;
+    padding-right: 3px;
+    border-radius: 10px;
+    background-color: rgb(255, 248, 243);
+}
+
+.title-row * {
+    font-weight: bold;
+    font-size: 1.25em;
+}
+
+.rows > div {
+    flex-shrink: 1;
+    flex-grow: 1;
+    font-family: Arial, Helvetica, sans-serif;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    letter-spacing: 1px;
+    align-self: center;
+}
+
+.pages-buttons {
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 18px;
+}
+
+.pages-buttons button {
+    margin: 1px;
+    padding: 3px;
+    font-size: 1.25em;
+}
+
+.add-task-button {
+    margin-left: 18px;
+    padding: 3px;
+    font-size: 1.5em;
+    border-radius: 7px;
+    color: green;
+    background-color: rgb(236, 237, 239);
+    cursor: pointer;
+}
+
+.add-task-button:hover {
+    background-color: rgb(191, 194, 200);
+}
+
+.details-button {
+    font-size: 1.1em;
+    background-color: rgb(26, 26, 250);
+    color: white;
+    border-radius: 18px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.details-button:hover {
+    background-color: rgb(12, 12, 225);
+    color: rgb(213, 209, 209);
+}
+
+.image-row {
+    display: flex;
+    align-items: center;
+}
+
+.image-row > img {
+    width: 20%;
+    height: 90%;
+    border-radius: 50%;
+    margin-right: 10px;
 }
