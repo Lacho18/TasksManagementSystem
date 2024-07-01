@@ -1,24 +1,21 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import {Routes, Route} from 'react-router-dom';
+import TaskManager from './components/TaskManager';
+import Users from './components/Users';
+import TaskHistory from './components/TaskHistory';
+import NavBar from './components/NavBar';
+
+import "./styles/App.css"
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='app-root'>
+      <NavBar />
+      <Routes>
+          <Route path='/' element={<TaskManager />}/>
+          <Route path='/users' element={<Users />}/>
+          <Route path='taskHistory' element={<TaskHistory />}/>
+      </Routes>
     </div>
   );
 }
