@@ -49,7 +49,7 @@ const TasksTable: React.FC<TasksTableProps> = ({ currentTasks }) => {
             </div>
             {currentTasks.map((indexValue, index) => {
                 return (
-                    <div className="rows">
+                    <div className="rows" key={index}>
                         <div style={{ flexBasis: "5%" }}>#{indexValue.id}</div>
                         <div className="image-row" style={{ flexBasis: "30%" }}><img src={indexValue.user.image} /> {indexValue.user.name} </div>
                         <div style={{ flexBasis: "30%" }}>{indexValue.title}</div>

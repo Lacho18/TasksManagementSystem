@@ -1,0 +1,49 @@
+.add-task-window {
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    height: 70%;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(156, 156, 156);
+    left: 50%;
+    transform: translateX(-40%);
+    overflow: scroll;
+}
+
+.add-task-title {
+    font-size: 2em;
+    font-weight: bold;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.close-button {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: red;
+    font-size: 1.5em;
+    margin: 5px;
+}
+
+.form-div {
+    display: flex;
+}
+
+.form-div > form {
+    display: flex;
+    flex-direction: column;
+    font-size: 1.25em;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.form-div > form * {
+    margin: 4px;
+    padding: 3px;
+}
+
+.form-div > form input {
+    font-size: 1.25em;
+    padding: 3px;
+}
