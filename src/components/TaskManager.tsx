@@ -5,24 +5,19 @@ import tasks from "../data/tasks";
 import { useEffect, useRef, useState } from "react";
 import AddTaskWindow from "./AddTaskWindow";
 
-interface Task {
-    id: number;
-    title: string;
-    description: string;
-    beginDate: Date;
-    endDate: Date;
-    completed: boolean;
-    onTime: boolean;
-    user: {
-        name: string;
-        image: string;
-    };
+import Task from "../data/Task";
+import User from "../data/User";
+import ListInTasks from "./ListInTasks";
+
+interface TaskManager {
+    currentUser: User;
 }
 
-export default function TaskManager() {
+export default function TaskManager(props: TaskManager) {
     const [currentPage, setCurrentPage] = useState(1);
     const [currentTasks, setCurrentTasks] = useState(tasks);
     const [addTask, setAddTask] = useState(false);
+    const [visual, setVisual] = useState(true);
     const pagesNumber = useRef<number[]>([]);
 
     //Sets the tasks to visualize on the current page
@@ -35,7 +30,7 @@ export default function TaskManager() {
             })
         }
         setFirstPageTasks();
-    }, [currentPage]);
+    }, [currentPage, visual]);
 
     //Sets the current page after clicking the page button
     function clickHandler(value: number): void {
@@ -45,6 +40,11 @@ export default function TaskManager() {
     //Visualize and hides the add task window
     function addTaskHandler() {
         setAddTask(oldValue => !oldValue);
+    }
+
+    //Called when the current user marks his task as complete, because there is no database to mark the change
+    function changeVisual() {
+        setVisual(oldValue => !oldValue);
     }
 
     //Sets the buttons to the different pages
@@ -59,6 +59,7 @@ export default function TaskManager() {
 
     return (
         <div className="task-manager">
+            <ListInTasks />
             <div style={{ flexBasis: "20%", marginBottom: "10px", marginLeft: "10px", marginTop: "30px" }}>
                 <p style={{ fontSize: "2em", fontWeight: "bold" }}>Tasks list</p>
             </div>
@@ -67,7 +68,7 @@ export default function TaskManager() {
                     <button className="add-task-button" onClick={() => { addTaskHandler(); }}>Add task</button>
                 </div>
                 <div>
-                    <TasksTable currentTasks={currentTasks} />
+                    <TasksTable currentTasks={currentTasks} currentUser={props.currentUser} changeVisual={changeVisual} />
                 </div>
                 <div className="pages-buttons">
                     {pagesNumber.current.map(indexValue => {
@@ -76,7 +77,7 @@ export default function TaskManager() {
                 </div>
             </div>
 
-            <AddTaskWindow selectedWindow={addTask} taskHandler={addTaskHandler} />
+            <AddTaskWindow selectedWindow={addTask} taskHandler={addTaskHandler} currentUser={props.currentUser} />
         </div>
     );
 }

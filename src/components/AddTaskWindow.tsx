@@ -1,33 +1,49 @@
 import { useState } from "react";
 import "../styles/AddTaskWindow.css";
+import tasks from "../data/tasks";
+
+import Task from "../data/Task";
+import User from "../data/User";
 
 interface TaskManagerData {
     selectedWindow: boolean;
     taskHandler: () => void;
+    currentUser: User;
 }
 
 export default function AddTaskWindow(props: TaskManagerData) {
-    const [newTask, setNewTask] = useState({
+    const [newTask, setNewTask] = useState<Task>({
         id: 0,
         title: "",
         description: "",
-        beginDate: null,
-        endDate: null,
+        beginDate: new Date(),
+        endDate: new Date(),
         completed: false,
         onTime: false,
         user: {
-            name: "",
-            image: ""
+            name: props.currentUser.name.firstName + " " + props.currentUser.name.lastName,
+            image: props.currentUser.image
         }
     });
 
     function changeHandler(event: any) {
         setNewTask(oldTask => {
-            return { ...oldTask, [event.target.name]: event.target.value };
+            if (event.target.name !== "beginDate" && event.target.name !== "endDate") {
+                return { ...oldTask, [event.target.name]: event.target.value };
+            }
+            else {
+                return { ...oldTask, [event.target.name]: new Date(event.target.value) };
+            }
         });
+    }
 
-        console.log(newTask);
+    function submitHandler(e: any) {
+        e.preventDefault();
+        let keys = Object.keys(newTask);
 
+        newTask.id = tasks.length + 1;
+        tasks.push(newTask);
+        props.taskHandler();
     }
 
     return (
@@ -36,7 +52,7 @@ export default function AddTaskWindow(props: TaskManagerData) {
                 <p>Add new task to the list</p>
             </div>
             <div className="form-div" style={{ flexBasis: "80%" }}>
-                <form>
+                <form onSubmit={submitHandler}>
                     <label htmlFor="title">Enter task title</label>
                     <input type="text" placeholder="task title" name="title" onChange={changeHandler} />
                     <label htmlFor="beginDate">Enter begin date</label>

@@ -1,13 +1,4 @@
-interface User {
-    id: number;
-    name: {
-        firstName: string,
-        lastName: string
-    };
-    image: string;
-    age: number;
-    completedTasks: number[];
-}
+import User from "./User";
 
 const users: User[] = [
     {

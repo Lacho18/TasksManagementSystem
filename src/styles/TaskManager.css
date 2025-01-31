@@ -77,8 +77,8 @@
     background-color: rgb(26, 26, 250);
     color: white;
     border-radius: 18px;
-    padding-top: 5px;
-    padding-bottom: 5px;
+    padding: 5px 10px;
+    text-decoration: none;
 }
 
 .details-button:hover {
@@ -96,4 +96,20 @@
     height: 90%;
     border-radius: 50%;
     margin-right: 10px;
+}
+
+.complete-delete-buttons {
+    right: 0;
+    display: flex;
+}
+
+.complete-delete-buttons button {
+    
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.complete-delete-buttons button:hover {
+    background-color: rgba(0, 0, 0, 0.3);
 }

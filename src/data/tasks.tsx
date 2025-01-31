@@ -1,18 +1,6 @@
-interface Task {
-    id: number;
-    title: string;
-    description: string;
-    beginDate: Date;
-    endDate: Date;
-    completed: boolean;
-    onTime: boolean;
-    user: {
-        name: string;
-        image: string;
-    };
-}
+import Task from "./Task";
 
-const tasks: Task[] = [
+let tasks: Task[] = [
     {
         id: 1,
         title: "Make responsive design to the interface",
